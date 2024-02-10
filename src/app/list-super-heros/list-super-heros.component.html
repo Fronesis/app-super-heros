@@ -1,0 +1,60 @@
+<div class="super-heros">
+    <section class="super-heros__header">
+        <button mat-raised-button (click)="openAddSuperHeroModal()">Add New Super Hero</button>
+
+        <form class="super-heros__search">
+            <mat-form-field>
+                <mat-label>Super Hero</mat-label>
+                <input type="text" matInput (input)="search($event.target)">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </form>
+    </section>
+
+    <section class="super-heros__body">
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Id Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> Id </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- FullName Column -->
+                <ng-container matColumnDef="FullName">
+                    <th mat-header-cell *matHeaderCellDef> Full Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+                </ng-container>
+
+                <!-- Actions Column -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="openSuperHeroDetails(element)">Detail</button>
+                            <button mat-menu-item (click)="openSuperHeroEdition(element)">Edit</button>
+                            <button mat-menu-item (click)="deleteSuperHero(element.id)">Remove</button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </section>
+</div>
