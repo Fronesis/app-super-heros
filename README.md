@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
 
-## Autoría
+## Authorship
 
 Este proyecto fue creado y mantenido por J.O.B.
 
